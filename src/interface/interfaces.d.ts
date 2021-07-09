@@ -8,12 +8,17 @@ interface IResponse {
 	userId: string
 }
 
-interface IState {
+interface IChatState {
 	messages: Array<IResponse>,
 	editModal: boolean,
   preloader: boolean,
-	messageToEdit: null | IResponse		
+	messageToEdit: null | IResponse
 }
+
+interface IState {
+	chat: IChatState
+}
+
 
 interface IAction {
   type: string

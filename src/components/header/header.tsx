@@ -22,7 +22,7 @@ class Header extends Component<Props> {
 		const time = formatDate(new Date(lastMessageDate));
 
 		return (
-			<header>
+			<header className="header">
 				<h1 className="header-title">{title}</h1>
 				<p className="header-users-count">{usersCount} participants</p>
 				<p className="header-messages-count">{messagesCount} messages</p>

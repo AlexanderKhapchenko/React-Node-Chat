@@ -8,7 +8,7 @@ interface Props {
 	updateMessage: (message: IResponse) => IAction
 	messages: Array<IResponse>
 	editModal: boolean
-	messageToEdit: IResponse
+	messageToEdit: null | IResponse
 }
 
 class EditModal extends Component<Props> {
@@ -30,7 +30,7 @@ class EditModal extends Component<Props> {
 		this.clearState();
 
 		this.props.updateMessage({
-			...this.props.messageToEdit,
+			...this.props.messageToEdit!,
 			text: this.state.value!
 		});
 		
@@ -49,14 +49,14 @@ class EditModal extends Component<Props> {
 		})
 	}
 
-
 	render() {
 		return (
 			<div className={`edit-message-modal ${this.props.editModal ? "modal-shown" : null}`}>
 				<div className="modal">
-					{/* <input type="text" className="edit-message-input" value={this.state.isEditing ? this.state.value : this.props.messageToEdit?.text} onChange={e => this.onChange(e)}/> */}
-					<textarea className="edit-message-input" value={this.state.isEditing ? this.state.value : this.props.messageToEdit?.text} onChange={e => this.onChange(e)}>
-
+					<textarea
+						className="edit-message-input"
+						value={this.state.isEditing ? this.state.value : this.props.messageToEdit?.text}
+						onChange={this.onChange}>
 					</textarea>
 					<div className="edit-buttons">
 						<button className="edit-message-button" onClick={this.editMessage}>edit</button>
@@ -68,11 +68,11 @@ class EditModal extends Component<Props> {
 	}
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: IState) => {
 	return {
-		messages: state.messages,
-		editModal: state.editModal,
-		messageToEdit: state.messageToEdit
+		messages: state.chat.messages,
+		editModal: state.chat.editModal,
+		messageToEdit: state.chat.messageToEdit
 	}
 };
 

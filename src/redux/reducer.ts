@@ -1,8 +1,9 @@
 
 
 import {LOAD_MESSAGES, ADD_MESSAGE, DELETE_MESSAGE, UPDATE_MESSAGE, SHOW_PRELOADER, HIDE_PRELOADER, SHOW_EDIT_MODAL, HIDE_EDIT_MODAL} from './action-types';
+import { combineReducers } from "redux";
 
-const initialState: IState = {
+const initialState: IChatState = {
 	messages: [],
 	editModal: false,
   preloader: true,
@@ -10,7 +11,7 @@ const initialState: IState = {
 };
 
 
-function rootReducer (state = initialState, action: IAction & IMessagesAction ): IState {
+function chatReducer (state = initialState, action: IAction & IMessagesAction ): IChatState {
 	
 	switch (action.type) {
 		case LOAD_MESSAGES: {
@@ -87,5 +88,9 @@ function rootReducer (state = initialState, action: IAction & IMessagesAction ):
 			return state;
 	}
 }
+
+const rootReducer = combineReducers({
+	chat: chatReducer,
+});
 
 export default rootReducer;

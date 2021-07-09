@@ -69,9 +69,9 @@ class MessageInput extends Component<Props> {
 	}
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: IState) => {
 	return {
-		editModal: state.editModal
+		editModal: state.chat.editModal
 	}
 };
 

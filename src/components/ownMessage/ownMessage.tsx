@@ -56,8 +56,8 @@ class OwnMessage extends Component<Props> {
 
 const mapStateToProps = (state: IState) => {
 	return {
-		messages: state.messages,
-		editModal: state.editModal
+		messages: state.chat.messages,
+		editModal: state.chat.editModal
 	}
 };
 
