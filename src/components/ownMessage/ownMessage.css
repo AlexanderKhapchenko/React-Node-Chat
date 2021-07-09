@@ -1,0 +1,78 @@
+.own-message {
+	display: flex;
+	position: relative;
+	align-items: center;
+	justify-content: flex-end;
+	width: 55%;
+	margin: 20px 0px;
+	border-radius: 50px;
+
+	background: #1b243c;
+	color: #f3f3f3;
+  border: 1px solid #e0e0e0b7;
+	align-self: flex-end;
+}
+
+.own-message .message-info {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+
+.own-message .message-text {
+	padding-left: 20px;
+}
+
+.own-message .message-user-name {
+	font-weight: 500;
+}
+
+.own-message .message-text {
+	padding-left: 50px;
+}
+
+.own-message .message-time {
+	font-size: 12px;
+}
+
+.own-message .message-user-avatar {
+	margin: 10px;
+	width: 60px;
+	height: 60px;
+	object-fit: cover;
+	border-radius: 50%;
+}
+
+.own-message .message-buttons {
+	position: absolute;
+	height: 60%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	left: 20px;
+	visibility: hidden;
+	opacity: 0;
+	transition: 0.2s;
+}
+
+.own-message:hover .message-buttons {
+	visibility: visible;
+	opacity: 1;
+}
+
+
+.own-message .message-buttons button {
+	cursor: pointer;
+	padding: 2px 8px;
+	border: 1px solid #8b8b8bb7;
+	border-radius: 15px;
+	outline: none;
+}
+
+.own-message .message-edit:hover,
+.own-message .message-delete:hover {
+	color: #fff;
+	background: #1f346d;
+}
+
+

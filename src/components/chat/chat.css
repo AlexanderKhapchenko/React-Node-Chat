@@ -1,0 +1,10 @@
+body {
+	background: #b1cfffc5;
+}
+
+.chat {
+	padding: 20px;
+	width: calc(100% - 40px);
+	display: flex;
+	flex-direction: column;
+}

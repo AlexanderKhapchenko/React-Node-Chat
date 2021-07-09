@@ -1,0 +1,71 @@
+.message-input {
+	position: relative;
+	display: flex;
+	justify-content: center;	
+  padding: 15px 0 0;
+  margin-top: 10px;
+	width: 100%;
+}
+
+.message-input .message-input-text {
+	font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: 1.3rem;
+  color: #3A3A3A;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+.message-input .message-input-text::placeholder {
+	color: transparent;
+}
+
+.message-input .message-input-text:placeholder-shown ~ .message-input-label {
+	font-size: 1.3rem;
+	cursor: text;
+	top: 20px;
+} 
+
+.message-input .message-input-label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #9b9b9b;
+}
+
+.message-input .message-input-text:focus {
+	padding-bottom: 6px;  
+  border-width: 3px;
+  border-image: linear-gradient(to right, #11998e, #38ef7d);
+  border-image-slice: 1;
+}
+
+.message-input .message-input-text:focus ~ .message-input-label {
+	position: absolute;
+	top: 0;
+	display: block;
+	transition: 0.2s;
+	font-size: 1rem;
+	color: #11998e;
+	font-weight:700;  
+}
+
+.message-input .message-input-button {
+	margin-left: 20px;
+	width: 100px;
+	border-radius: 25px;
+	cursor: pointer;
+	transition: 0.5s;
+}
+
+.message-input .message-input-button:hover {
+	border-radius: 15px;
+	background: #000;
+	color: #fff;
+}

@@ -1,0 +1,15 @@
+.message-list {
+	margin-top: 60px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.messages-divider {
+	width: 100%;
+	text-align: center;
+}
+
+.messages-divider.hidden {
+	display: none;
+}

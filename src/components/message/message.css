@@ -1,0 +1,64 @@
+
+.message {
+	display: flex;
+	position: relative;
+	align-items: center;
+	width: 55%;
+	max-width: 55%;
+	margin: 20px 0px;
+	border-radius: 50px;
+
+	background: #eeeeee;
+	color: rgb(58, 58, 58);
+  border: 1px solid #e0e0e0b7;
+}
+
+.message .message-user-name {
+	font-weight: 500;
+}
+
+.message .message-text {
+	padding-right: 50px;
+}
+
+.message .message-time {
+	font-size: 12px;
+}
+
+.message .message-user-avatar {
+	margin: 10px;
+	width: 60px;
+	height: 60px;
+	object-fit: cover;
+	border-radius: 50%;
+}
+
+.message .heart {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 20px;
+	width: 30px;
+	cursor: pointer;
+	outline: none;
+	visibility: hidden;
+	opacity: 0;
+	transition: 0.2s;
+}
+
+.message:hover .heart {
+	visibility: visible;
+	opacity: 1;
+}
+
+.message .message-like {
+	color: black;
+}
+
+.message .message-liked {
+	fill: red;
+	color: red;
+	visibility: visible;
+	opacity: 1;
+}
+
