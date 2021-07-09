@@ -1,12 +1,15 @@
 import { Component } from "react";
-import User from '../../user';
 import './ownMessage.css';
 import formatDate from '../../helpers/formater';
+import { connect } from 'react-redux';
+import {deleteMessage, showEditModal} from '../../redux/actions';
 
 interface Props {
 	message: IResponse
-	editMessage: (message: IResponse) => void
-	deleteMessage: (message: IResponse) => void
+	messages: Array<IResponse>,
+	editModal: boolean,
+	showEditModal: (message: IResponse) => IAction2
+	deleteMessage: (message: IResponse) => IAction
 }
 
 class OwnMessage extends Component<Props> {
@@ -21,17 +24,8 @@ class OwnMessage extends Component<Props> {
 	}
 
 	handleClickEdit = () => {
-		const { avatar, createdAt, id, text, user } = this.props.message;
-		const editedMessage = prompt(`Edit message ${text}`)  || '';
-		this.props.editMessage({
-			id,
-			createdAt,
-			avatar,
-			editedAt: '',
-			text: editedMessage,
-			user,
-			userId: User.id
-		})
+		const message = this.props.message;
+		this.props.showEditModal(message);
 	}
 
 	handleClickDelete = () => {
@@ -60,4 +54,16 @@ class OwnMessage extends Component<Props> {
 	}
 }
 
-export default OwnMessage;
+const mapStateToProps = (state: IState) => {
+	return {
+		messages: state.messages,
+		editModal: state.editModal
+	}
+};
+
+const mapDispatchToProps = {
+	deleteMessage,
+	showEditModal
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(OwnMessage);

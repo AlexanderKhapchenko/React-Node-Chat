@@ -1,26 +1,25 @@
 import { Component } from "react";
+import { connect } from 'react-redux';
 import Header from '../header/header';
 import MessageInput from "../messageInput/messageInput";
 import MessageList from '../messageList/messageList';
 import User from '../../user';
+import EditModal from '../editModal/editModal';
 import './chat.css'
+import {loadMessages, showEditModal} from '../../redux/actions';
 
 interface Props {
-	url: string
+	url: string,
+	loadMessages: (messages: Array<IResponse>) => IMessagesAction,
+	messages: Array<IResponse>,
+	showEditModal: (message: IResponse) => IAction2,
+	editModal: boolean
 }
 
 class Chat extends Component<Props> {
 
-	state = {
-		isPageLoad: false,
-		lastMessageTime: '',
-		messageCount: 0,
-		userCount: 0,
-		messages: []
-	}
-
 	getLastMessageTime = (data: Array<IResponse>) => {
-		const lastMessageDate = data[data.length - 1].createdAt;
+		const lastMessageDate = data[data.length - 1]?.createdAt;
 		return lastMessageDate;
 	}
 
@@ -29,7 +28,6 @@ class Chat extends Component<Props> {
 		data.forEach( (element: IResponse) => {
 			users.add(element.userId);
 		});
-
 		return users.size;
 	}
 
@@ -44,68 +42,52 @@ class Chat extends Component<Props> {
 				return a.getTime()-b.getTime();
 				});
 
-			this.setState({
-				isPageLoad: true,
-				lastMessageTime: this.getLastMessageTime(data),
-				messageCount: data.length,
-				userCount: this.getUsersCount(data),
-				messages: data
-			})
-		}
-		catch (error) {
-			alert('Something wrong');
+			this.props.loadMessages(data);
+
+			document.addEventListener('keydown', (event) => {
+				if(event.code === 'ArrowUp' && !this.props.editModal) {
+					const currentUserMessages = this.props.messages.filter((msg: IResponse) => msg.userId === User.id);
+					const lastMessage = currentUserMessages[currentUserMessages.length - 1];
+
+					(currentUserMessages.length !== 0) && this.props.showEditModal(lastMessage);
+				}
+			});
+			
+		} catch (error) {
+			alert(error);
 		}
 	}
-
-	sendMessage = (message: IResponse) => {
-		this.setState({
-			messages: [...this.state.messages, message],
-			messageCount: (this.state.messageCount + 1),
-			lastMessageTime: message.createdAt
-		});
-	}
-
-	editMessage = (editedMessage: IResponse) => {
-    const messages = this.state.messages.map((message: IResponse) => {
-      return editedMessage.id === message.id ? editedMessage : message
-    })
-
-    this.setState({
-      messages
-    });
-  }
-  
-  deleteMessage = (deletedMessage: IResponse) => {
-    const messages = this.state.messages.filter((message: IResponse) => {
-      return deletedMessage.id !== message.id
-    })
-
-    this.setState({
-      messages,
-			messageCount: (this.state.messageCount - 1),
-			lastMessageTime: this.getLastMessageTime(messages),
-    });
-  }
 
 	render() {
 		return (
 			<div className="chat">
 					<Header
 						title = 'My chat'
-						usersCount = {this.state.userCount}
-						messagesCount = {this.state.messageCount}
-						lastMessageDate = {this.state.lastMessageTime}
+						usersCount = {this.getUsersCount(this.props.messages)}
+						messagesCount = {this.props.messages.length}
+						lastMessageDate = {this.getLastMessageTime(this.props.messages)}
 					/>
 					<MessageList
-						list={this.state.messages}
+						messages={this.props.messages}
 						currentUserId={User.id}
-						editMessage={this.editMessage} 
-						deleteMessage={this.deleteMessage}
 					/>
-					<MessageInput sendMessage={this.sendMessage} />
+					<MessageInput/>
+					<EditModal/>
 			</div>
 		);
 	}
 }
 
-export default Chat;
+const mapStateToProps = (state: any) => {
+	return {
+		messages: state.messages,
+		editModal: state.editModal,
+	}
+};
+
+const mapDispatchToProps = {
+	loadMessages,
+	showEditModal
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Chat);

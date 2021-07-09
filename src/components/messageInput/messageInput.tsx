@@ -1,10 +1,15 @@
 import { ChangeEvent, Component } from "react";
 import User from '../../user';
 import './messageInput.css';
+import { connect } from 'react-redux';
+import {addMessage} from '../../redux/actions';
+
+
 const { v4: uuidv4 } = require('uuid');
 
 interface Props {
-	sendMessage: (message: IResponse) => void
+	addMessage: (message: IResponse) => IAction,
+	editModal: boolean
 }
 
 class MessageInput extends Component<Props> {
@@ -13,7 +18,19 @@ class MessageInput extends Component<Props> {
 		inputMessage: ''
 	}
 
+	componentDidMount() {
+		document.addEventListener('keydown', (event) => {
+			if(event.code === 'Enter' && !this.props.editModal) {
+				this.handleClick();
+			}
+		});
+	}
+
 	handleClick = () => {
+		if(this.state.inputMessage.trim() === '') {
+			return alert('Message can`t be empty');
+		}
+
 		const now = new Date();
 		const message: IResponse = {
 			id: uuidv4(),
@@ -25,7 +42,11 @@ class MessageInput extends Component<Props> {
 			userId: User.id
 		}
 
-		this.props.sendMessage(message);
+		this.props.addMessage(message);
+		this.setState({
+			inputMessage: ''
+		});
+	
 	}
 
 	onChange(e:ChangeEvent<HTMLInputElement>) {
@@ -39,7 +60,7 @@ class MessageInput extends Component<Props> {
 		return (
 			<div className="message-input">
 				<div>
-					<input className="message-input-text" type="text" placeholder="Message" onChange={e => this.onChange(e)}/>
+					<input className="message-input-text" type="text" placeholder="Message" value={this.state.inputMessage} onChange={e => this.onChange(e)}/>
 					<label className="message-input-label">Message</label>
 				</div>
 				<button className="message-input-button" onClick={this.handleClick}>Send</button>
@@ -48,4 +69,14 @@ class MessageInput extends Component<Props> {
 	}
 }
 
-export default MessageInput;
+const mapStateToProps = (state: any) => {
+	return {
+		editModal: state.editModal
+	}
+};
+
+const mapDispatchToProps = {
+	addMessage
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessageInput);
