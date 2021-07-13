@@ -22,18 +22,14 @@ interface IState {
 
 interface IAction {
   type: string
-  payload?: {
+  payload: {
 		message: IResponse
 	}
 }
 
 interface IMessagesAction {
   type: string
-  payload?: {
+  payload: {
 		messages: Array<IResponse>,
 	}
-}
-
-interface IAction2 {
-  type: string
 }

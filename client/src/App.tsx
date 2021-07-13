@@ -8,7 +8,7 @@ const App: React.FC = () => {
   return (
 		<Suspense fallback={<Preloader />}>
 		  <Chat 
-				url='https://edikdolynskyi.github.io/react_sources/messages.json'
+				url='http://192.168.88.31:3050/api/messages'
 			/>
 		</Suspense>
   );

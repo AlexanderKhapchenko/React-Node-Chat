@@ -12,7 +12,7 @@ interface Props {
 	url: string,
 	loadMessages: (messages: Array<IResponse>) => IMessagesAction,
 	messages: Array<IResponse>,
-	showEditModal: (message: IResponse) => IAction2,
+	showEditModal: (message: IResponse) => Omit<IAction, 'payload'>,
 	editModal: boolean
 }
 

@@ -8,7 +8,7 @@ interface Props {
 	message: IResponse
 	messages: Array<IResponse>,
 	editModal: boolean,
-	showEditModal: (message: IResponse) => IAction2
+	showEditModal: (message: IResponse) => Omit<IAction, 'payload'>,
 	deleteMessage: (message: IResponse) => IAction
 }
 

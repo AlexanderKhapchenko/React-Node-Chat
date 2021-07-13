@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {hideEditModal, updateMessage} from '../../redux/actions';
 
 interface Props {
-	hideEditModal: () => IAction2
+	hideEditModal: () => Omit<IAction, 'payload'>,
 	updateMessage: (message: IResponse) => IAction
 	messages: Array<IResponse>
 	editModal: boolean
