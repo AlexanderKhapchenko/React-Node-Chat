@@ -1,23 +1,59 @@
+import { Api } from '../api/api';
 
 class User {
-	getAll() {
-		
+	async getAll() {
+		try {
+			const response = await fetch(Api.USER);
+			const data = await response.json();
+			return data;
+		} catch (err) {
+			console.log(err);
+		}
 	}
 
 	getOne(id: string) {
 
 	}
 
-	create(payload: any) {
-
+	async addUser(user: any) {
+		try {
+			const response = await fetch(Api.USER, {
+				method: 'POST',
+				body: JSON.stringify(user),
+				headers: { "Content-Type": "application/json" }
+			});
+			return response.json();
+		} catch (err) {
+			console.log(err);
+		}
 	}
 
-	update(payload: any) {
+	async update(payload: any) {
+		try {
+			const {id, ...other} = payload
+			const response = await fetch(`${Api.USER}/${id}`, {
+				method: 'PUT',
+				body: JSON.stringify(other),
+				headers: { "Content-Type": "application/json" }
+			});
 
+			return response.json();
+		} catch (err) {
+			console.log(err);
+		}
 	}
 
-	delete(id: string) {
-		
+	async delete(id: string) {
+		try {
+			const response = await fetch(`${Api.USER}/${id}`, {
+				method: 'DELETE'
+			});
+
+			const data = await response.json();
+			return data;
+		} catch (err) {
+			console.log(err);
+		}
 	}
 }
 

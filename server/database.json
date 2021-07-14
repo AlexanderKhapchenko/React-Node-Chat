@@ -4,10 +4,12 @@
       "id": "9e243930-83c9-11e9-8e0c-8f1a686f4ce4",
       "avatar": "https://resizing.flixster.com/kr0IphfLGZqni5JOWDS2P1-zod4=/280x250/v1.cjs0OTQ2NztqOzE4NDk1OzEyMDA7MjgwOzI1MA",
       "userName": "admin",
-      "password": "admin",
-      "email": "admin@gmail.com",
+      "password": "Ruth",
+      "email": "ruths@gmail.com",
       "createdAt": "2020-07-16T19:48:12.936Z",
-      "role": "admin"
+      "role": "admin",
+      "name": "saese",
+      "editedAt": "2021-07-14T06:12:54.846Z"
     },
     {
       "id": "9e243930-83c9-11e9-8e0c-8f1a686f4ce4",
@@ -34,16 +36,21 @@
       "password": "Helen",
       "email": "helen@gmail.com",
       "createdAt": "2020-07-16T19:48:12.936Z",
-      "role": "user"
+      "role": "user",
+      "name": "Helen",
+      "paswword": "Helen",
+      "editedAt": "2021-07-14T05:52:52.658Z"
     },
     {
       "id": "5328dba1-1b8f-11e8-9629-c7eca82aa7bd",
       "avatar": "https://www.aceshowbiz.com/images/photo/tom_pelphrey.jpg",
       "userName": "Ben",
       "password": "Ben",
-      "email": "ben@gmail.com",
+      "email": "besn36@gmail.com",
       "createdAt": "2020-07-16T19:48:12.936Z",
-      "role": "user"
+      "role": "user",
+      "name": "ben",
+      "editedAt": "2021-07-14T06:10:02.883Z"
     }
   ],
   "messages": [
@@ -199,6 +206,23 @@
       "text": "aaaha!",
       "createdAt": "2020-07-16T19:58:17.878Z",
       "editedAt": ""
+    },
+    {
+      "avatar": "https://image.flaticon.com/icons/png/512/847/847969.png",
+      "text": "asd",
+      "user": "DoctorWho",
+      "userId": "5328dba1-1b8f-11e8-9639-c7ece82ba7bd",
+      "id": "c6dbf0bf-6b62-4039-b5b1-a66f28809dc7",
+      "createdAt": "2021-07-14T06:08:21.510Z",
+      "editedAt": "2021-07-14T06:23:50.283Z"
+    },
+    {
+      "avatar": "https://image.flaticon.com/icons/png/512/847/847969.png",
+      "text": "asdzxc",
+      "user": "DoctorWho",
+      "userId": "5328dba1-1b8f-11e8-9639-c7ece82ba7bd",
+      "id": "9dcaab03-0679-48e4-8efb-5f7a60849c25",
+      "createdAt": "2021-07-14T06:21:19.542Z"
     }
   ]
 }

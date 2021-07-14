@@ -1,29 +1,38 @@
-import { Component } from "react";
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Header from '../header/header';
 import MessageInput from "../messageInput/messageInput";
 import MessageList from '../messageList/messageList';
+import Login from '../login/login';
 import User from '../../user';
-import EditModal from '../editModal/editModal';
-import './chat.css'
-import {loadMessages, showEditModal} from '../../redux/actions';
+import EditMessage from '../editMessage/editMessage';
+import UserList from '../userList/userList'
+import EditUser from '../editUser/editUser'
+import './chat.css';
+import {loadMessages} from '../../redux/chatActions';
+import { useEffect } from 'react';
+import { Link, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import * as ROUTES from '../../constants/routes';
+import AddUser from '../addUser/addUser';
 
-interface Props {
-	url: string,
-	loadMessages: (messages: Array<IResponse>) => IMessagesAction,
-	messages: Array<IResponse>,
-	showEditModal: (message: IResponse) => Omit<IAction, 'payload'>,
-	editModal: boolean
-}
+export default function Chat() {
 
-class Chat extends Component<Props> {
+	const { messages } = useSelector(({ chat }: any) => ({
+    messages: chat.messages
+  }));
 
-	getLastMessageTime = (data: Array<IResponse>) => {
+
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+    dispatch(loadMessages());
+  }, [dispatch]);
+
+	const getLastMessageTime = (data: Array<IResponse>) => {
 		const lastMessageDate = data[data.length - 1]?.createdAt;
 		return lastMessageDate;
 	}
 
-	getUsersCount = (data: Array<IResponse>) => {
+	const getUsersCount = (data: Array<IResponse>) => {
 		const users = new Set();
 		data.forEach( (element: IResponse) => {
 			users.add(element.userId);
@@ -31,63 +40,59 @@ class Chat extends Component<Props> {
 		return users.size;
 	}
 
-	async componentDidMount() {
-		try	{
-			const response = await fetch(this.props.url);
-			const data = await response.json();
-			
-			data.sort((first:IResponse,second:IResponse) => {
-				const a = new Date(first.createdAt);
-				const b = new Date(second.createdAt);
-				return a.getTime()-b.getTime();
-				});
+			// 	document.addEventListener('keydown', (event) => {
+			// 	if(event.code === 'ArrowUp' && !this.props.editModal) {
+			// 		const currentUserMessages = this.props.messages.filter((msg: IResponse) => msg.userId === User.id);
+			// 		const lastMessage = currentUserMessages[currentUserMessages.length - 1];
 
-			this.props.loadMessages(data);
+			// 		(currentUserMessages.length !== 0) && this.props.showEditModal(lastMessage);
+			// 	}
+			// });
 
-			document.addEventListener('keydown', (event) => {
-				if(event.code === 'ArrowUp' && !this.props.editModal) {
-					const currentUserMessages = this.props.messages.filter((msg: IResponse) => msg.userId === User.id);
-					const lastMessage = currentUserMessages[currentUserMessages.length - 1];
+	return (
+		<div className="chat">
+			<Router>
+				<Switch>
+					<Route path={ROUTES.CHAT} exact>
+						<Header
+							title = 'My chat'
+							usersCount = {getUsersCount(messages)}
+							messagesCount = {messages.length}
+							lastMessageDate = {getLastMessageTime(messages)}
+						/>
+						<MessageList
+							messages={messages}
+							currentUserId={User.id}
+						/>
+						<MessageInput/>
+						<Link to={ROUTES.USER_LIST}>
+							USER LIST
+						</Link>
+					</Route>
 
-					(currentUserMessages.length !== 0) && this.props.showEditModal(lastMessage);
-				}
-			});
-			
-		} catch (error) {
-			alert(error);
-		}
-	}
+					<Route path={ROUTES.LOGIN}>
+					  <Login/>
+					</Route>
 
-	render() {
-		return (
-			<div className="chat">
-					<Header
-						title = 'My chat'
-						usersCount = {this.getUsersCount(this.props.messages)}
-						messagesCount = {this.props.messages.length}
-						lastMessageDate = {this.getLastMessageTime(this.props.messages)}
-					/>
-					<MessageList
-						messages={this.props.messages}
-						currentUserId={User.id}
-					/>
-					<MessageInput/>
-					<EditModal/>
-			</div>
-		);
-	}
+					<Route path={ROUTES.EDIT_MESSAGE}>
+						<EditMessage/>
+					</Route>
+
+					<Route path={ROUTES.USER_LIST}>
+						<UserList/>
+					</Route>
+
+					<Route path={ROUTES.EDIT_USER}>
+						<EditUser/>
+					</Route>
+
+					<Route path={ROUTES.ADD_USER}>
+						<AddUser/>
+					</Route>
+
+				</Switch>
+			</Router>
+		</div>
+	);
+	
 }
-
-const mapStateToProps = (state: IState) => {
-	return {
-		messages: state.chat.messages,
-		editModal: state.chat.editModal,
-	}
-};
-
-const mapDispatchToProps = {
-	loadMessages,
-	showEditModal
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Chat);

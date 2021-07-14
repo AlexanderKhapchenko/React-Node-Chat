@@ -44,7 +44,8 @@ router.delete('/:id', (req, res, next) => {
     if(res.error){
         return next();
     }
-    res.data = MessageService.delete(req.params.id);
+		const [removed] = MessageService.delete(req.params.id);
+    res.data = removed
     next();
 }, responseMiddleware);
 

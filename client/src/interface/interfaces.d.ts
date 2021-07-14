@@ -12,7 +12,13 @@ interface IChatState {
 	messages: Array<IResponse>,
 	editModal: boolean,
   preloader: boolean,
-	messageToEdit: null | IResponse
+	messageToEdit: null | IResponse,
+	status: string
+}
+
+interface IUserState {
+	users: Array<IUser>,
+	status: string
 }
 
 interface IState {
@@ -32,4 +38,12 @@ interface IMessagesAction {
   payload: {
 		messages: Array<IResponse>,
 	}
+}
+
+interface IUser {
+	name: string,
+	password: string,
+	email: string,
+	id: string,
+	role: string
 }

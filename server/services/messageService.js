@@ -34,11 +34,11 @@ class MessageService {
     }
 
     delete(id){
-        const removedUser = MessageRepository.delete(id);
-        if (!removedUser) {
+        const removed = MessageRepository.delete(id);
+        if (!removed) {
           return null;
         }
-        return removedUser;
+        return removed;
     }
 }
 

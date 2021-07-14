@@ -1,4 +1,4 @@
-import {LOAD_MESSAGES} from './action-types';
+import {ActionType} from './action-types';
 
 export const loadMessages = (url: string) => (dispatch : any) => {
 	fetch(url)
@@ -11,7 +11,7 @@ export const loadMessages = (url: string) => (dispatch : any) => {
 			});
 		
 			dispatch({
-				type: LOAD_MESSAGES,
+				type: ActionType.LOAD_MESSAGES,
 				payload: messages
 			})
 		})

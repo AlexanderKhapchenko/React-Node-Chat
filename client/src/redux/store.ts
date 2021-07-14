@@ -1,12 +1,27 @@
-import { createStore, compose } from "redux";
-import rootReducer from "./reducer";
+import chatReducer from "./chatReducer";
+import userReducer from "./userReducer";
+import { configureStore } from '@reduxjs/toolkit';
+import { Message } from '../services/message.service';
+import { User } from '../services/user.service';
 
-declare global {
-	interface Window {
-		__REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
-	}
-}
+const messageService = new Message();
+const userService = new User();
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+export default configureStore({
+  reducer: {
+		chat: chatReducer,
+		user: userReducer
+	},
+	middleware: (getDefaultMiddleware) => {
+    return getDefaultMiddleware({
+      thunk: {
+        extraArgument: {
+          messageService,
+					userService
+        },
+      },
+      serializableCheck: false,
+    });
+  }
 
-export default createStore(rootReducer, composeEnhancers());
+})

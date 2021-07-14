@@ -3,7 +3,7 @@
     {
       "id": "9e243930-83c9-11e9-8e0c-8f1a686f4ce4",
       "avatar": "https://resizing.flixster.com/kr0IphfLGZqni5JOWDS2P1-zod4=/280x250/v1.cjs0OTQ2NztqOzE4NDk1OzEyMDA7MjgwOzI1MA",
-      "userName": "admin",
+      "name": "admin",
       "password": "admin",
       "email": "admin@gmail.com",
       "createdAt": "2020-07-16T19:48:12.936Z",
@@ -12,7 +12,7 @@
     {
       "id": "9e243930-83c9-11e9-8e0c-8f1a686f4ce4",
       "avatar": "https://resizing.flixster.com/kr0IphfLGZqni5JOWDS2P1-zod4=/280x250/v1.cjs0OTQ2NztqOzE4NDk1OzEyMDA7MjgwOzI1MA",
-      "userName": "Ruth",
+      "name": "Ruth",
       "password": "Ruth",
       "email": "ruth@gmail.com",
       "createdAt": "2020-07-16T19:48:12.936Z",
@@ -21,7 +21,7 @@
     {
       "id": "533b5230-1b8f-11e8-9629-c7eca82aa7bd",
       "avatar": "https://resizing.flixster.com/EVAkglctn7E9B0hVKJrueplabuQ=/220x196/v1.cjs0NjYwNjtqOzE4NDk1OzEyMDA7MjIwOzE5Ng",
-      "userName": "Wendy",
+      "name": "Wendy",
       "password": "Wendy",
       "email": "wendy@gmail.com",
       "createdAt": "2020-07-16T19:48:12.936Z",
@@ -30,7 +30,7 @@
     {
       "id": "4b003c20-1b8f-11e8-9629-c7eca82aa7bd",
       "avatar": "https://resizing.flixster.com/PCEX63VBu7wVvdt9Eq-FrTI6d_4=/300x300/v1.cjs0MzYxNjtqOzE4NDk1OzEyMDA7MzQ5OzMxMQ",
-      "userName": "Helen",
+      "name": "Helen",
       "password": "Helen",
       "email": "helen@gmail.com",
       "createdAt": "2020-07-16T19:48:12.936Z",
@@ -39,7 +39,7 @@
     {
       "id": "5328dba1-1b8f-11e8-9629-c7eca82aa7bd",
       "avatar": "https://www.aceshowbiz.com/images/photo/tom_pelphrey.jpg",
-      "userName": "Ben",
+      "name": "Ben",
       "password": "Ben",
       "email": "ben@gmail.com",
       "createdAt": "2020-07-16T19:48:12.936Z",

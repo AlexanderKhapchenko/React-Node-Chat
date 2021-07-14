@@ -2,7 +2,7 @@ exports.user = {
     id: '',
 		avatar: '',
     name: '',
-    paswword: '',
+    password: '',
     email: '',
     createdAt: '',
 		role: ''
