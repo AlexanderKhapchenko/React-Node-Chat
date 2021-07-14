@@ -19,7 +19,6 @@ function OwnMessage (props: Props) {
 	}
 
 	const handleClickEdit = () => {
-		//history.push(`${ROUTES.EDIT_MESSAGE}/${id}`);
 		history.push(ROUTES.EDIT_MESSAGE, {
 			id,
 			text

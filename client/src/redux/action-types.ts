@@ -1,14 +1,3 @@
-// export const LOAD_MESSAGES = "LOAD_MESSAGES";
-// export const ADD_MESSAGE = "ADD_MESSAGE";
-// export const DELETE_MESSAGE = "DELETE_MESSAGE";
-// export const UPDATE_MESSAGE = "UPDATE_MESSAGE";
-
-// export const SHOW_PRELOADER = "SHOW_PRELOADER";
-// export const HIDE_PRELOADER = "HIDE_PRELOADER";
-
-// export const SHOW_EDIT_MODAL = "SHOW_EDIT_MODAL";
-// export const HIDE_EDIT_MODAL = "HIDE_EDIT_MODAL";
-
 const ActionType = {
 	LOAD_MESSAGES: "LOAD_MESSAGES",
 	ADD_MESSAGE: "ADD_MESSAGE",
