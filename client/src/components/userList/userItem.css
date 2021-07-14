@@ -1,0 +1,30 @@
+.users-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 30px;
+}
+
+.users-container .user-info {
+	font-size: 20px;
+	padding: 10px;
+	background: lightblue;
+	border-radius: 25px;
+}
+
+.users-container .btn-container {
+	display: flex;
+	width: 100%;
+	justify-content: space-around;
+	margin-top: 10px;
+}
+
+.users-container .btn-container button{
+	display: flex;
+	width: 40%;
+	justify-content: space-around;
+	margin-top: 3px;
+	border-radius: 15px;
+	cursor: pointer;
+}

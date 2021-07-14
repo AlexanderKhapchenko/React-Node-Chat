@@ -4,6 +4,7 @@ import { loadUsers } from "../../redux/userActions";
 import UserItem from './UserItem';
 import { useHistory } from "react-router-dom";
 import * as ROUTES from '../../constants/routes';
+import './userList.css';
 
 function UserList () {
 	const { users } = useSelector(({ user }: any) => ({
@@ -25,7 +26,7 @@ function UserList () {
 	console.log('users', users)
 
 	return (
-		<div className="message-list">
+		<div className="user-list">
 			{
 				users.map((user: IUser) => {
 					return  <UserItem 
@@ -36,7 +37,7 @@ function UserList () {
 									/> 
 			})				
 			}
-			<button className="edit-user-close" onClick={onCreate}>Create New</button>
+			<button className="create-user" onClick={onCreate}>Create New</button>
 		</div>
 	)
 	

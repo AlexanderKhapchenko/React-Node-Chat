@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { deleteUser } from "../../redux/userActions";
 import * as ROUTES from '../../constants/routes';
+import './userItem.css';
 
 
 interface Props {
@@ -32,16 +33,14 @@ export default function UserItem (props: Props) {
   const { id, name, email, password } = props;
 	
   return (
-      <div className="container list-group-item">
-          <div className="row">
-              <div className="col-8">
-                  <span className="badge badge-secondary float-left" style={{ fontSize: "2em", margin: "2px" }}>{name}</span>
-                  <span className="badge badge-info" style={{ fontSize: "2em", margin: "2px" }}>{email}</span>
-              </div>
-              <div className="col-4 btn-group">
-                  <button className="btn btn-outline-primary" onClick={(e) => onEdit(id)}> Edit </button>
-                  <button className="btn btn-outline-dark" onClick={(e) => onDelete(id)}> Delete </button>
-              </div>
+      <div className="users-container">
+          <div className="user-info">
+                  <span>{name}</span>
+                  <span>{email}</span>
+          </div>
+          <div className="btn-container">
+              <button className="edit-btn" onClick={(e) => onEdit(id)}> Edit </button>
+              <button className="delete-btn" onClick={(e) => onDelete(id)}> Delete </button>
           </div>
       </div>
   );
